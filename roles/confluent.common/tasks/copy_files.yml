@@ -12,7 +12,7 @@
   copy:
     src: "{{ item.source_path }}"
     dest: "{{ item.destination_path }}"
-    mode: 0640
-    owner: "{{user}}"
-    group: "{{group}}"
+    mode: "{{ item.mode | default(0640) }}"
+    owner: "{{ item.user | default(user) }}"
+    group: "{{ item.group | default(group) }}"
   loop: "{{ copy_files }}"
